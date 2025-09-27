@@ -1,0 +1,219 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Project_.Net\\ChatbotAI_BE\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|d:\\project_.net\\chatbotai_be\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|d:\\project_.net\\chatbotai_be\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|solutionrelative:controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|d:\\project_.net\\chatbotai_be\\services\\ai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|solutionrelative:services\\ai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|d:\\project_.net\\chatbotai_be\\services\\iuserconnectionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|solutionrelative:services\\iuserconnectionmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|d:\\project_.net\\chatbotai_be\\controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|solutionrelative:controllers\\chatcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|d:\\project_.net\\chatbotai_be\\hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|solutionrelative:hubs\\chathub.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|d:\\project_.net\\chatbotai_be\\services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|solutionrelative:services\\jwtservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|d:\\project_.net\\chatbotai_be\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|solutionrelative:services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|d:\\project_.net\\chatbotai_be\\services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|solutionrelative:services\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|d:\\project_.net\\chatbotai_be\\services\\chatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|solutionrelative:services\\chatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|d:\\project_.net\\chatbotai_be\\services\\ichatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|solutionrelative:services\\ichatservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 1,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedHeight": 362,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{004be353-6879-467c-9d1e-9ac23cdf6d49}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{6324226f-61b6-4f28-92ee-18d4b5fe1e48}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Project_.Net\\ChatbotAI_BE\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Project_.Net\\ChatbotAI_BE\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AQIAABAAAAAAAAAAAABAvTUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-13T08:39:10.316Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ChatHub.cs",
+              "DocumentMoniker": "D:\\Project_.Net\\ChatbotAI_BE\\Hubs\\ChatHub.cs",
+              "RelativeDocumentMoniker": "Hubs\\ChatHub.cs",
+              "ToolTip": "D:\\Project_.Net\\ChatbotAI_BE\\Hubs\\ChatHub.cs",
+              "RelativeToolTip": "Hubs\\ChatHub.cs",
+              "ViewState": "AQIAAE0AAAAAAAAAAAAAwAgAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-13T08:34:01.036Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "IUserConnectionManager.cs",
+              "DocumentMoniker": "D:\\Project_.Net\\ChatbotAI_BE\\Services\\IUserConnectionManager.cs",
+              "RelativeDocumentMoniker": "Services\\IUserConnectionManager.cs",
+              "ToolTip": "D:\\Project_.Net\\ChatbotAI_BE\\Services\\IUserConnectionManager.cs",
+              "RelativeToolTip": "Services\\IUserConnectionManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAcAAAAQAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-13T08:29:15.581Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "ChatController.cs",
+              "DocumentMoniker": "D:\\Project_.Net\\ChatbotAI_BE\\Controllers\\ChatController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ChatController.cs",
+              "ToolTip": "D:\\Project_.Net\\ChatbotAI_BE\\Controllers\\ChatController.cs",
+              "RelativeToolTip": "Controllers\\ChatController.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAAAkAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-13T08:28:37.362Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "D:\\Project_.Net\\ChatbotAI_BE\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "Controllers\\AuthController.cs",
+              "ToolTip": "D:\\Project_.Net\\ChatbotAI_BE\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "Controllers\\AuthController.cs",
+              "ViewState": "AQIAAFQAAAAAAAAAAAAiwG8AAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-13T08:28:34.491Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "D:\\Project_.Net\\ChatbotAI_BE\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "Services\\UserService.cs",
+              "ToolTip": "D:\\Project_.Net\\ChatbotAI_BE\\Services\\UserService.cs",
+              "RelativeToolTip": "Services\\UserService.cs",
+              "ViewState": "AQIAABcAAAAAAAAAAAAiwE4AAAAdAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-13T08:27:59.048Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "D:\\Project_.Net\\ChatbotAI_BE\\Services\\IUserService.cs",
+              "RelativeDocumentMoniker": "Services\\IUserService.cs",
+              "ToolTip": "D:\\Project_.Net\\ChatbotAI_BE\\Services\\IUserService.cs",
+              "RelativeToolTip": "Services\\IUserService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-13T08:28:12.476Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AI.cs",
+              "DocumentMoniker": "D:\\Project_.Net\\ChatbotAI_BE\\Services\\AI.cs",
+              "RelativeDocumentMoniker": "Services\\AI.cs",
+              "ToolTip": "D:\\Project_.Net\\ChatbotAI_BE\\Services\\AI.cs",
+              "RelativeToolTip": "Services\\AI.cs",
+              "ViewState": "AQIAAAQAAAAAAAAAAAAUwA8AAABLAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-13T08:23:34.98Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "JwtService.cs",
+              "DocumentMoniker": "D:\\Project_.Net\\ChatbotAI_BE\\Services\\JwtService.cs",
+              "RelativeDocumentMoniker": "Services\\JwtService.cs",
+              "ToolTip": "D:\\Project_.Net\\ChatbotAI_BE\\Services\\JwtService.cs",
+              "RelativeToolTip": "Services\\JwtService.cs",
+              "ViewState": "AQIAAAsAAACAmZmZmZkvwBgAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-13T08:23:13.969Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ChatService.cs",
+              "DocumentMoniker": "D:\\Project_.Net\\ChatbotAI_BE\\Services\\ChatService.cs",
+              "RelativeDocumentMoniker": "Services\\ChatService.cs",
+              "ToolTip": "D:\\Project_.Net\\ChatbotAI_BE\\Services\\ChatService.cs",
+              "RelativeToolTip": "Services\\ChatService.cs",
+              "ViewState": "AQIAACYAAAAAAAAAAAAIwBoAAAApAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-13T08:16:28.443Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "IChatService.cs",
+              "DocumentMoniker": "D:\\Project_.Net\\ChatbotAI_BE\\Services\\IChatService.cs",
+              "RelativeDocumentMoniker": "Services\\IChatService.cs",
+              "ToolTip": "D:\\Project_.Net\\ChatbotAI_BE\\Services\\IChatService.cs",
+              "RelativeToolTip": "Services\\IChatService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAhAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-13T08:16:27.633Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

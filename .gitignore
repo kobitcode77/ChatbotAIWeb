@@ -1,0 +1,14 @@
+# Git ignore rules 
+# Bỏ thư mục build
+/bin/
+/obj/
+/dist/
+/build/
+
+# Bỏ file config nhạy cảm
+appsettings.json
+.env
+
+# Bỏ thư mục IDE
+.idea/
+.vscode/
