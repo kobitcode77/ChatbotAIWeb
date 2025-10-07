@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Project_.Net\\ChatbotAI_BE\\ChatbotAI_BE.csproj": {}
+    "D:\\ChatbotAI_Web\\ChatbotAI_BE\\ChatbotAI_BE.csproj": {}
   },
   "projects": {
-    "D:\\Project_.Net\\ChatbotAI_BE\\ChatbotAI_BE.csproj": {
+    "D:\\ChatbotAI_Web\\ChatbotAI_BE\\ChatbotAI_BE.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Project_.Net\\ChatbotAI_BE\\ChatbotAI_BE.csproj",
+        "projectUniqueName": "D:\\ChatbotAI_Web\\ChatbotAI_BE\\ChatbotAI_BE.csproj",
         "projectName": "ChatbotAI_BE",
-        "projectPath": "D:\\Project_.Net\\ChatbotAI_BE\\ChatbotAI_BE.csproj",
+        "projectPath": "D:\\ChatbotAI_Web\\ChatbotAI_BE\\ChatbotAI_BE.csproj",
         "packagesPath": "C:\\Users\\vanhu\\.nuget\\packages\\",
-        "outputPath": "D:\\Project_.Net\\ChatbotAI_BE\\obj\\",
+        "outputPath": "D:\\ChatbotAI_Web\\ChatbotAI_BE\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\vanhu\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -49,6 +49,10 @@
             "BCrypt.Net-Next": {
               "target": "Package",
               "version": "[4.0.3, )"
+            },
+            "Microsoft.AspNetCore.Authentication.Facebook": {
+              "target": "Package",
+              "version": "[8.0.8, )"
             },
             "Microsoft.AspNetCore.Authentication.Google": {
               "target": "Package",

@@ -9,7 +9,8 @@ namespace ChatbotAI_BE.Data
         {
         }
 
-        public DbSet<Message> Messages { get; set; }
+        public DbSet<ChatSession> ChatSessions { get; set; }
+        public DbSet<ChatMessage> ChatMessages { get; set; }
         public DbSet<AppUser> Users { get; set; } = null!;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
