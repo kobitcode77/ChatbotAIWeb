@@ -26,6 +26,7 @@ namespace ChatbotAI_BE.Services
                 new Claim(JwtRegisteredClaimNames.Sub, user.Email ?? ""),
                 new Claim("id", user.Id.ToString()),
                 new Claim("provider", user.Provider),
+                new Claim(ClaimTypes.Role, user.Role.ToString()),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString())
             };
 

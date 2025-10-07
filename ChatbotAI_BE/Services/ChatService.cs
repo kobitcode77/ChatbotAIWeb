@@ -1,59 +1,119 @@
-﻿using ChatbotAI_BE.Enums;
-using ChatbotAI_BE.Services;
-using ChatbotAI_BE.Data;
-using Microsoft.EntityFrameworkCore;
+﻿using ChatbotAI_BE.Data;
+using ChatbotAI_BE.Dtos;
+using ChatbotAI_BE.Exceptions;
 using ChatbotAI_BE.Models;
+using ChatbotAI_BE.Repositories;
+using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace ChatbotAI_BE.Services
 {
+    public interface IChatService
+    {
+        Task<List<ChatSession>> GetSessionsAsync(Guid userId);
+        Task<List<ChatMessage>> GetMessagesAsync(Guid sessionId, Guid userId);
+        Task<ChatSession> CreateSessionAsync(Guid userId, CreateSessionRequest request);
+        Task<bool> DeleteSessionAsync(Guid sessionId, Guid userId);
+        Task<bool> DeleteMessageAsync(Guid messageId, Guid userId);
+    }
     public class ChatService : IChatService
     {
-        private readonly ChatDBContext _db;
+        private readonly ISessionRepository _sessionRepo;
+        private readonly IMessageRepository _messageRepo;
 
-        public ChatService(ChatDBContext db) => _db = db;
-
-        public async Task<Message> SaveWorldAsync(string sender, string content)
+        public ChatService(ISessionRepository sessionRepo, IMessageRepository messageRepo)
         {
-            var msg = new Message { Sender = sender, Content = content, Scope = ChatScope.World, SendTime = DateTime.UtcNow };
-            _db.Messages.Add(msg);
-            await _db.SaveChangesAsync();
-            return msg;
+            _sessionRepo = sessionRepo;
+            _messageRepo = messageRepo;
+        }
+        public async Task<List<ChatSession>> GetSessionsAsync(Guid userId)
+        {
+            try
+            {
+                return await _sessionRepo.GetSessionsAsync(userId);
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
-        public async Task<Message> SaveDirectAsync(string sender, string receiver, string content)
+        public async Task<List<ChatMessage>> GetMessagesAsync(Guid sessionId, Guid userId)
         {
-            var msg = new Message { Sender = sender, Receiver = receiver, Content = content, Scope = ChatScope.Direct, SendTime = DateTime.UtcNow };
-            _db.Messages.Add(msg);
-            await _db.SaveChangesAsync();
-            return msg;
+            try
+            {
+                var messages = await _messageRepo.GetMessagesAsync(sessionId, userId);
+
+                if (!messages.Any())
+                    throw new SessionNotFoundException();
+
+                return messages;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
-        public async Task<Message> SaveGroupAsync(string sender, string groupName, string content)
+        public async Task<ChatSession> CreateSessionAsync(Guid userId, CreateSessionRequest request)
         {
-            var msg = new Message { Sender = sender, GroupName = groupName, Content = content, Scope = ChatScope.Group, SendTime = DateTime.UtcNow };
-            _db.Messages.Add(msg);
-            await _db.SaveChangesAsync();
-            return msg;
+            try
+            {
+                var session = new ChatSession
+                {
+                    UserId = userId,
+                    Model = request.Model,
+                    Title = string.IsNullOrWhiteSpace(request.Title)
+                               ? $"{request.Model}"
+                               : request.Title
+                };
+
+                await _sessionRepo.AddSessionAsync(session);
+                await _sessionRepo.SaveChangesAsync();
+
+                return session;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
-        public async Task<IReadOnlyList<Message>> GetWorldAsync(int limit = 200)
-            => await _db.Messages
-                        .Where(m => m.Scope == ChatScope.World)
-                        .OrderByDescending(m => m.SendTime).Take(limit)
-                        .OrderBy(m => m.SendTime).ToListAsync();
+        public async Task<bool> DeleteSessionAsync(Guid sessionId, Guid userId)
+        {
+            try
+            {
+                var session = await _sessionRepo.GetSessionAsync(sessionId, userId);
+                if (session == null)
+                    throw new SessionNotFoundException();
 
-        public async Task<IReadOnlyList<Message>> GetDirectAsync(string user1, string user2, int limit = 200)
-            => await _db.Messages
-                        .Where(m => m.Scope == ChatScope.Direct &&
-                               ((m.Sender == user1 && m.Receiver == user2) ||
-                                (m.Sender == user2 && m.Receiver == user1)))
-                        .OrderByDescending(m => m.SendTime).Take(limit)
-                        .OrderBy(m => m.SendTime).ToListAsync();
+                await _sessionRepo.DeleteSessionAsync(session);
+                await _sessionRepo.SaveChangesAsync();
 
-        public async Task<IReadOnlyList<Message>> GetGroupAsync(string groupName, int limit = 200)
-            => await _db.Messages
-                        .Where(m => m.Scope == ChatScope.Group && m.GroupName == groupName)
-                        .OrderByDescending(m => m.SendTime).Take(limit)
-                        .OrderBy(m => m.SendTime).ToListAsync();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<bool> DeleteMessageAsync(Guid messageId, Guid userId)
+        {
+            try
+            {
+                var message = await _messageRepo.GetMessageAsync(messageId, userId);
+                if (message == null)
+                    throw new MessageNotFoundException();
+
+                await _messageRepo.DeleteMessageAsync(message);
+                await _messageRepo.SaveChangesAsync();
+
+                return true;
+            }
+            catch (Exception ex) {
+                throw;
+            }
+        }
     }
 }

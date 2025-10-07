@@ -1,7 +1,7 @@
 ﻿using ChatbotAI_BE.Data;
-using ChatbotAI_BE.Hubs;
 using ChatbotAI_BE.Services;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.Facebook;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
@@ -13,15 +13,13 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddDbContext<ChatDBContext>(options => options.UseMySql(builder.Configuration.GetConnectionString("MySqlConnection"), new MySqlServerVersion(new Version(8, 0, 36))));
-builder.Services.AddHttpClient<AI>();
-builder.Services.AddScoped<IChatService, ChatService>();
-builder.Services.AddSingleton<IUserConnectionManager, UserConnectionManager>();
+builder.Services.AddHttpClient<AIApiClient>();
 
 builder.Services.AddControllers();
 // Authentication
 builder.Services.AddAuthentication(options =>
 {
-    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme; // temp scheme for external
+    options.DefaultScheme = CookieAuthenticationDefaults.AuthenticationScheme;
     options.DefaultChallengeScheme = GoogleDefaults.AuthenticationScheme;
 })
 .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme, options =>
@@ -39,6 +37,17 @@ builder.Services.AddAuthentication(options =>
     options.Scope.Add("profile");
     options.Scope.Add("email");
 })
+.AddFacebook(FacebookDefaults.AuthenticationScheme, options =>
+{
+    options.AppId = builder.Configuration["Authentication:Facebook:AppId"];
+    options.AppSecret = builder.Configuration["Authentication:Facebook:AppSecret"];
+    options.CallbackPath = builder.Configuration["Authentication:Facebook:CallbackPath"];
+
+    // Yêu cầu quyền truy cập (scope)
+    options.Scope.Add("email");
+    options.Fields.Add("picture"); // lấy avatar
+    options.Fields.Add("name");
+})
 .AddJwtBearer(JwtBearerDefaults.AuthenticationScheme, options =>
 {
     var key = Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]);
@@ -53,31 +62,16 @@ builder.Services.AddAuthentication(options =>
         ValidateLifetime = true,
         NameClaimType = ClaimTypes.Name
     };
-    options.Events = new JwtBearerEvents
-    {
-        OnMessageReceived = context =>
-        {
-            var accessToken = context.Request.Query["access_token"];
-
-            if (string.IsNullOrEmpty(accessToken))
-            {
-                accessToken = context.Request.Headers["Authorization"]
-                    .ToString().Replace("Bearer ", "");
-            }
-
-            var path = context.HttpContext.Request.Path;
-            if (!string.IsNullOrEmpty(accessToken) &&
-                path.StartsWithSegments("/chathub"))
-            {
-                context.Token = accessToken;
-            }
-
-            return Task.CompletedTask;
-        }
-    };
 });
-builder.Services.AddAuthorization();
-builder.Services.AddSignalR();
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy =>
+        policy.RequireRole("Admin"));
+
+    options.AddPolicy("UserAccess", policy =>
+        policy.RequireRole("User", "Admin"));
+});
 
 builder.Services.AddCors(options =>
 {
@@ -102,7 +96,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-app.MapHub<ChatHub>("/chathub");
 
 app.UseHttpsRedirection();
 

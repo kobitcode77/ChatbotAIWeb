@@ -12,3 +12,4 @@ appsettings.json
 # Bỏ thư mục IDE
 .idea/
 .vscode/
+.vs/

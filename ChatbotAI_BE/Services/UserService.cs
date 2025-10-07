@@ -1,88 +1,107 @@
 ﻿using ChatbotAI_BE.Exceptions;
-using ChatbotAI_BE.Data;
 using ChatbotAI_BE.Models;
-using Microsoft.EntityFrameworkCore;
+using ChatbotAI_BE.Repositories;
 
 namespace ChatbotAI_BE.Services
 {
+    public interface IUserService
+    {
+        Task<AppUser> SaveOrUpdateUserByProviderAsync(string provider, string providerId, string email, string name, string avatar);
+        Task<AppUser> RegisterAsync(string username, string password, string? email, string? name);
+        Task<AppUser> LoginAsync(string username, string password);
+    }
+
     public class UserService : IUserService
     {
-        private readonly ChatDBContext _chatDB;
+        private readonly IUserRepository _userRepo;
 
-        public UserService(ChatDBContext chatDB)
+        public UserService(IUserRepository userRepo)
         {
-            _chatDB = chatDB;
-        }
-        public async Task<AppUser?> GetUserByProviderAsync(string provider, string providerId)
-        {
-            return await _chatDB.Users.FirstOrDefaultAsync(
-                u => u.Provider == provider && u.ProviderId == providerId
-            );
+            _userRepo = userRepo;
         }
 
         public async Task<AppUser> SaveOrUpdateUserByProviderAsync(string provider, string providerId, string email, string name, string avatar)
         {
-            var user = await GetUserByProviderAsync(provider, providerId);
-
-            if (user == null)
+            try
             {
-                user = new AppUser
+                var user = await _userRepo.GetByProviderAsync(provider, providerId);
+
+                if (user == null)
                 {
-                    Provider = provider,
-                    ProviderId = providerId,
+                    user = new AppUser
+                    {
+                        Provider = provider,
+                        ProviderId = providerId,
+                        Email = email,
+                        Name = name,
+                        Avatar = avatar,
+                        CreatedAt = DateTime.UtcNow,
+                        UpdatedAt = DateTime.UtcNow
+                    };
+                    await _userRepo.AddAsync(user);
+                }
+                else
+                {
+                    user.Email = email ?? user.Email;
+                    user.Name = name ?? user.Name;
+                    user.Avatar = avatar ?? user.Avatar;
+                    user.UpdatedAt = DateTime.UtcNow;
+                    await _userRepo.UpdateAsync(user);
+                }
+
+                await _userRepo.SaveChangesAsync();
+                return user;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
+        }
+
+        public async Task<AppUser> RegisterAsync(string username, string password, string? email, string? name)
+        {
+            if (await _userRepo.ExistsByUsernameAsync(username))
+                throw new UserAlreadyExistsException();
+            try
+            {
+                var user = new AppUser
+                {
+                    Username = username,
+                    Password = BCrypt.Net.BCrypt.HashPassword(password),
                     Email = email,
                     Name = name,
-                    Avatar = avatar,
-                    CreatedAt = DateTime.UtcNow,
-                    UpdatedAt = DateTime.UtcNow
+                    Provider = "Local",
+                    ProviderId = username
                 };
-                _chatDB.Users.Add(user);
-            }
-            else
-            {
-                user.Email = email ?? user.Email;
-                user.Name = name ?? user.Name;
-                user.Avatar = avatar ?? user.Avatar;
-                user.UpdatedAt = DateTime.UtcNow;
-                _chatDB.Users.Update(user);
-            }
 
-            await _chatDB.SaveChangesAsync();
-            return user;
+                await _userRepo.AddAsync(user);
+                await _userRepo.SaveChangesAsync();
+
+                return user;
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
-
-        public async Task<AppUser?> RegisterAsync(string username, string password, string? email, string? name)
+        public async Task<AppUser> LoginAsync(string username, string password)
         {
-            if (await _chatDB.Users.AnyAsync(u => u.Username == username))
+            try
             {
-                throw new UserAlreadyExistsException();
+                var user = await _userRepo.GetByUsernameAsync(username);
+                if (user == null)
+                    throw new UserNotFoundException();
+
+                if (!BCrypt.Net.BCrypt.Verify(password, user.Password))
+                    throw new IncorrectPasswordException();
+
+                return user;
             }
-            var user = new AppUser
+            catch (Exception ex)
             {
-                Username = username,
-                Password = BCrypt.Net.BCrypt.HashPassword(password),
-                Email = email,
-                Name = name,
-                Provider = "Local",
-                ProviderId = username
-            };
-            _chatDB.Users.Add(user);
-            await _chatDB.SaveChangesAsync();
-
-            return user;
-        }
-
-        public async Task<AppUser?> LoginAsync(string username, string password)
-        {
-            var user = await _chatDB.Users.FirstOrDefaultAsync(u => u.Username == username && u.Provider == "Local");
-            if (user == null)
-                throw new UserNotFoundException();
-            else if (!BCrypt.Net.BCrypt.Verify(password, user.Password))
-                throw new IncorrectPasswordException();
-            return user;
+                throw;
+            }
         }
     }
-
 }
-

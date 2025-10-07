@@ -9,6 +9,7 @@
       "ChatbotAI_BE/1.0.0": {
         "dependencies": {
           "BCrypt.Net-Next": "4.0.3",
+          "Microsoft.AspNetCore.Authentication.Facebook": "8.0.8",
           "Microsoft.AspNetCore.Authentication.Google": "8.0.8",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "8.0.8",
           "Microsoft.AspNetCore.SignalR": "1.2.0",
@@ -43,6 +44,14 @@
           "Microsoft.AspNetCore.Http.Abstractions": "2.3.0",
           "Microsoft.Extensions.Logging.Abstractions": "8.0.2",
           "Microsoft.Extensions.Options": "8.0.2"
+        }
+      },
+      "Microsoft.AspNetCore.Authentication.Facebook/8.0.8": {
+        "runtime": {
+          "lib/net8.0/Microsoft.AspNetCore.Authentication.Facebook.dll": {
+            "assemblyVersion": "8.0.8.0",
+            "fileVersion": "8.0.824.36908"
+          }
         }
       },
       "Microsoft.AspNetCore.Authentication.Google/8.0.8": {
@@ -915,6 +924,13 @@
       "sha512": "sha512-ve6uvLwKNRkfnO/QeN9M8eUJ49lCnWv/6/9p6iTEuiI6Rtsz+myaBAjdMzLuTViQY032xbTF5AdZF5BJzJJyXQ==",
       "path": "microsoft.aspnetcore.authentication.abstractions/2.3.0",
       "hashPath": "microsoft.aspnetcore.authentication.abstractions.2.3.0.nupkg.sha512"
+    },
+    "Microsoft.AspNetCore.Authentication.Facebook/8.0.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-3x4f9YCUpKI6O8+X1T04UKxE6uhaKYRX/+l+tb34YPNR3K1ioEeTGEISOasRpxQ9Q3cO1caZ5zOi1xer3MUKig==",
+      "path": "microsoft.aspnetcore.authentication.facebook/8.0.8",
+      "hashPath": "microsoft.aspnetcore.authentication.facebook.8.0.8.nupkg.sha512"
     },
     "Microsoft.AspNetCore.Authentication.Google/8.0.8": {
       "type": "package",

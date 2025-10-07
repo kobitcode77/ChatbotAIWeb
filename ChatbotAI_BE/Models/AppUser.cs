@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ChatbotAI_BE.Enums;
+using System.ComponentModel.DataAnnotations;
 
 namespace ChatbotAI_BE.Models
 {
@@ -30,8 +31,14 @@ namespace ChatbotAI_BE.Models
         [MaxLength(500)]
         public string? Avatar { get; set; }
 
+        [MaxLength(50)]
+        public UserRole Role { get; set; } = UserRole.User;
+
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
+        public List<ChatSession> Sessions { get; set; } = new();    
+        public List<AIModelActivity> Activities { get; set; } = new();    
+
     }
 }
 
