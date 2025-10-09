@@ -7,8 +7,8 @@ namespace ChatbotAI_BE.Repositories
     public interface ISessionRepository
     {
         Task<List<ChatSession>> GetAllSessionsAsync();
-        Task<List<ChatSession>> GetSessionsAsync(Guid userId);
-        Task<ChatSession?> GetSessionAsync(Guid sessionId, Guid userId);
+        Task<List<ChatSession>> GetSessionsByUserAsync(Guid userId);
+        Task<ChatSession?> GetSessionByIdAndUserAsync(Guid sessionId, Guid userId);
         Task AddSessionAsync(ChatSession session);
         Task DeleteSessionAsync(ChatSession session);
         Task SaveChangesAsync();
@@ -21,14 +21,6 @@ namespace ChatbotAI_BE.Repositories
         {
             _db = db;
         }
-        public async Task<List<ChatSession>> GetSessionsAsync(Guid userId)
-        {
-            return await _db.ChatSessions
-                .Where(s => s.UserId == userId)
-                .OrderByDescending(s => s.LastUpdatedAt)
-                .ToListAsync();
-        }
-
         public async Task<List<ChatSession>> GetAllSessionsAsync()
         {
             return await _db.ChatSessions
@@ -37,24 +29,32 @@ namespace ChatbotAI_BE.Repositories
                 .OrderByDescending(s => s.CreatedAt)
                 .ToListAsync();
         }
+        public async Task<List<ChatSession>> GetSessionsByUserAsync(Guid userId)
+        {
+            return await _db.ChatSessions
+                .Where(s => s.UserId == userId)
+                .Include(s => s.Messages)
+                .OrderByDescending(s => s.LastUpdatedAt)
+                .ToListAsync();
+        }
 
-        public async Task<ChatSession?> GetSessionAsync(Guid sessionId, Guid userId)
+        public async Task<ChatSession?> GetSessionByIdAndUserAsync(Guid sessionId, Guid userId)
         {
             return await _db.ChatSessions
                 .Include(s => s.Messages)
                 .FirstOrDefaultAsync(s => s.Id == sessionId && s.UserId == userId);
         }
 
-        public async Task AddSessionAsync(ChatSession session)
+        public Task AddSessionAsync(ChatSession session)
         {
             _db.ChatSessions.Add(session);
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
-        public async Task DeleteSessionAsync(ChatSession session)
+        public Task DeleteSessionAsync(ChatSession session)
         {
             _db.ChatSessions.Remove(session);
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         public async Task SaveChangesAsync()

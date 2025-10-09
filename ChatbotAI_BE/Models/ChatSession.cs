@@ -12,7 +12,10 @@ namespace ChatbotAI_BE.Models
         public AppUser User { get; set; } = null!;
 
         [Required]
+        public Guid ModelId { get; set; }
         public AIModel Model { get; set; } = null!;
+
+        [MaxLength(200)]
         public string? Title { get; set; }
 
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;

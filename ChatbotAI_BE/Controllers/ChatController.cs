@@ -27,7 +27,7 @@ namespace ChatbotAI_BE.Controllers
         public async Task<IActionResult> Ask([FromBody] ChatRequest request)
         {
             var userId = Guid.Parse(User.FindFirst("id").Value);
-            var reply = await _ai.AskAI(userId, request.Message, request.Model, request.SessionId);
+            var reply = await _ai.AskAIAsync(userId, request.Message, request.Model, request.SessionId);
 
             return Success(new { reply }, "Nhận phản hồi từ AI thành công.");
         }

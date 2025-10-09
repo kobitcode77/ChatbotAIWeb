@@ -22,6 +22,75 @@ namespace ChatbotAI_BE.Migrations
 
             MySqlModelBuilderExtensions.AutoIncrementColumns(modelBuilder);
 
+            modelBuilder.Entity("ChatbotAI_BE.Models.AIModel", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("varchar(100)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("longtext");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("tinyint(1)");
+
+                    b.Property<int>("MaxTokens")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
+
+                    b.Property<int>("TotalContext")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("AIModels");
+                });
+
+            modelBuilder.Entity("ChatbotAI_BE.Models.AIModelActivity", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("char(36)");
+
+                    b.Property<int>("InputTokens")
+                        .HasColumnType("int");
+
+                    b.Property<Guid>("ModelId")
+                        .HasColumnType("char(36)");
+
+                    b.Property<int>("OutputTokens")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("UsedAt")
+                        .HasColumnType("datetime(6)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("char(36)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ModelId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AIModelActivities");
+                });
+
             modelBuilder.Entity("ChatbotAI_BE.Models.AppUser", b =>
                 {
                     b.Property<Guid>("Id")
@@ -87,7 +156,8 @@ namespace ChatbotAI_BE.Migrations
 
                     b.Property<string>("Content")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasMaxLength(5000)
+                        .HasColumnType("varchar(5000)");
 
                     b.Property<int>("Role")
                         .HasColumnType("int");
@@ -114,20 +184,42 @@ namespace ChatbotAI_BE.Migrations
                     b.Property<DateTime>("LastUpdatedAt")
                         .HasColumnType("datetime(6)");
 
-                    b.Property<int>("Model")
-                        .HasColumnType("int");
+                    b.Property<Guid>("ModelId")
+                        .HasColumnType("char(36)");
 
                     b.Property<string>("Title")
-                        .HasColumnType("longtext");
+                        .HasMaxLength(200)
+                        .HasColumnType("varchar(200)");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("char(36)");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ModelId");
+
                     b.HasIndex("UserId");
 
                     b.ToTable("ChatSessions");
+                });
+
+            modelBuilder.Entity("ChatbotAI_BE.Models.AIModelActivity", b =>
+                {
+                    b.HasOne("ChatbotAI_BE.Models.AIModel", "Model")
+                        .WithMany("Activities")
+                        .HasForeignKey("ModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ChatbotAI_BE.Models.AppUser", "User")
+                        .WithMany("Activities")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Model");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ChatbotAI_BE.Models.ChatMessage", b =>
@@ -143,17 +235,32 @@ namespace ChatbotAI_BE.Migrations
 
             modelBuilder.Entity("ChatbotAI_BE.Models.ChatSession", b =>
                 {
+                    b.HasOne("ChatbotAI_BE.Models.AIModel", "Model")
+                        .WithMany()
+                        .HasForeignKey("ModelId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("ChatbotAI_BE.Models.AppUser", "User")
                         .WithMany("Sessions")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Model");
+
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ChatbotAI_BE.Models.AIModel", b =>
+                {
+                    b.Navigation("Activities");
                 });
 
             modelBuilder.Entity("ChatbotAI_BE.Models.AppUser", b =>
                 {
+                    b.Navigation("Activities");
+
                     b.Navigation("Sessions");
                 });
 

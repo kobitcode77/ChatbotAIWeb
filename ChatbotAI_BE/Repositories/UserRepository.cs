@@ -8,13 +8,14 @@ namespace ChatbotAI_BE.Repositories
     {
         Task<AppUser?> GetUserByIdAsync(Guid userId);
         Task<List<AppUser>> GetAllUsersAsync();
-        Task<AppUser?> GetByProviderAsync(string provider, string providerId);
-        Task<AppUser?> GetByUsernameAsync(string username);
-        Task<bool> ExistsByUsernameAsync(string username);
-        Task AddAsync(AppUser user);
-        Task UpdateAsync(AppUser user);
+        Task<AppUser?> GetUserByProviderAsync(string provider, string providerId);
+        Task<AppUser?> GetUserByUsernameAsync(string username);
+        Task<bool> UserExistsByUsernameAsync(string username);
+        Task AddUserAsync(AppUser user);
+        Task UpdateUserAsync(AppUser user);
         Task DeleteUserAsync(AppUser user);
         Task SaveChangesAsync();
+
     }
 
     public class UserRepository : IUserRepository
@@ -30,6 +31,7 @@ namespace ChatbotAI_BE.Repositories
             return await _db.Users
                 .Include(u => u.Sessions)
                 .ThenInclude(s => s.Messages)
+                 .Include(u => u.Activities)
                 .FirstOrDefaultAsync(u => u.Id == userId);
         }
         public async Task<List<AppUser>> GetAllUsersAsync()
@@ -37,39 +39,44 @@ namespace ChatbotAI_BE.Repositories
             return await _db.Users
                 .Include(u => u.Sessions)
                 .ThenInclude(s => s.Messages)
+                  .Include(u => u.Activities)
                 .OrderByDescending(u => u.CreatedAt)
                 .ToListAsync();
         }
 
-        public async Task<AppUser?> GetByProviderAsync(string provider, string providerId)
+        public async Task<AppUser?> GetUserByProviderAsync(string provider, string providerId)
         {
             return await _db.Users.FirstOrDefaultAsync(
                 u => u.Provider == provider && u.ProviderId == providerId);
         }
 
-        public async Task<AppUser?> GetByUsernameAsync(string username)
+        public async Task<AppUser?> GetUserByUsernameAsync(string username)
         {
             return await _db.Users.FirstOrDefaultAsync(u => u.Username == username);
         }
 
-        public async Task<bool> ExistsByUsernameAsync(string username)
+        public async Task<bool> UserExistsByUsernameAsync(string username)
         {
             return await _db.Users.AnyAsync(u => u.Username == username);
         }
 
-        public async Task AddAsync(AppUser user)
+        public  Task AddUserAsync(AppUser user)
         {
-            await _db.Users.AddAsync(user);
+             _db.Users.AddAsync(user);
+            return Task.CompletedTask;
+
         }
 
-        public async Task UpdateAsync(AppUser user)
+        public Task UpdateUserAsync(AppUser user)
         {
             _db.Users.Update(user);
+            return Task.CompletedTask;
+
         }
-        public async Task DeleteUserAsync(AppUser user)
+        public Task DeleteUserAsync(AppUser user)
         {
             _db.Users.Remove(user);
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
         public async Task SaveChangesAsync()
         {

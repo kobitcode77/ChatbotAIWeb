@@ -1,8 +1,8 @@
 ﻿using System.Net.Http.Headers;
 using System.Text;
 using System.Text.Json;
-using ChatbotAI_BE.Enums;
 using ChatbotAI_BE.Exceptions;
+using ChatbotAI_BE.Models;
 
 namespace ChatbotAI_BE.Services
 {
@@ -29,9 +29,9 @@ namespace ChatbotAI_BE.Services
             {
                 var payload = new
                 {
-                    model = model.GetModelName(),
+                    model = model.Name,
                     max_tokens = model.MaxTokens, // giới hạn token theo model
-                    temperature = 0.7, // mức độ sáng tạo của response (0 - 2)
+                    //temperature = 0.7, // mức độ sáng tạo của response (0 - 2)
                     messages = new[]
                     {
                         new { role = "user", content = userMessage }

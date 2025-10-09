@@ -6,8 +6,8 @@ namespace ChatbotAI_BE.Repositories
 {
     public interface IMessageRepository
     {
-        Task<List<ChatMessage>> GetMessagesAsync(Guid sessionId, Guid userId);
-        Task<ChatMessage?> GetMessageAsync(Guid messageId, Guid userId);
+        Task<List<ChatMessage>> GetMessagesBySessionAndUserAsync(Guid sessionId, Guid userId);
+        Task<ChatMessage?> GetMessageByIdAndUserAsync(Guid messageId, Guid userId);
         Task AddMessageAsync(ChatMessage message);
         Task DeleteMessageAsync(ChatMessage message);
         Task SaveChangesAsync();
@@ -21,7 +21,7 @@ namespace ChatbotAI_BE.Repositories
             _db = db;
         }
 
-        public async Task<List<ChatMessage>> GetMessagesAsync(Guid sessionId, Guid userId)
+        public async Task<List<ChatMessage>> GetMessagesBySessionAndUserAsync(Guid sessionId, Guid userId)
         {
             return await _db.ChatMessages
                 .Where(m => m.ChatSessionId == sessionId && m.ChatSession.UserId == userId)
@@ -30,7 +30,7 @@ namespace ChatbotAI_BE.Repositories
         }
 
 
-        public async Task<ChatMessage?> GetMessageAsync(Guid messageId, Guid userId)
+        public async Task<ChatMessage?> GetMessageByIdAndUserAsync(Guid messageId, Guid userId)
         {
             return await _db.ChatMessages
                 .Include(m => m.ChatSession)
@@ -39,17 +39,17 @@ namespace ChatbotAI_BE.Repositories
 
 
 
-        public async Task AddMessageAsync(ChatMessage message)
+        public  Task AddMessageAsync(ChatMessage message)
         {
             _db.ChatMessages.Add(message);
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
 
-        public async Task DeleteMessageAsync(ChatMessage message)
+        public  Task DeleteMessageAsync(ChatMessage message)
         {
             _db.ChatMessages.Remove(message);
-            await Task.CompletedTask;
+            return Task.CompletedTask;
         }
 
         public async Task SaveChangesAsync()
