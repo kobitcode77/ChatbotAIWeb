@@ -16,6 +16,7 @@ namespace ChatbotAI_BE.Models
         public ChatRole Role { get; set; }
 
         [Required]
+        [MaxLength(5000)]
         public string Content { get; set; } = null!;
 
         public DateTime SentAt { get; set; } = DateTime.UtcNow;

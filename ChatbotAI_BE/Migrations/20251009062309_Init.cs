@@ -15,6 +15,29 @@ namespace ChatbotAI_BE.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "AIModels",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    Code = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Name = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: false)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    Description = table.Column<string>(type: "longtext", nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    IsActive = table.Column<bool>(type: "tinyint(1)", nullable: false),
+                    MaxTokens = table.Column<int>(type: "int", nullable: false),
+                    TotalContext = table.Column<int>(type: "int", nullable: false),
+                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AIModels", x => x.Id);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "Users",
                 columns: table => new
                 {
@@ -44,17 +67,55 @@ namespace ChatbotAI_BE.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateTable(
+                name: "AIModelActivities",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    UserId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    ModelId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    InputTokens = table.Column<int>(type: "int", nullable: false),
+                    OutputTokens = table.Column<int>(type: "int", nullable: false),
+                    UsedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AIModelActivities", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_AIModelActivities_AIModels_ModelId",
+                        column: x => x.ModelId,
+                        principalTable: "AIModels",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AIModelActivities_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                })
+                .Annotation("MySql:CharSet", "utf8mb4");
+
+            migrationBuilder.CreateTable(
                 name: "ChatSessions",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     UserId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    Model = table.Column<int>(type: "int", nullable: false),
-                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
+                    ModelId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
+                    Title = table.Column<string>(type: "varchar(200)", maxLength: 200, nullable: true)
+                        .Annotation("MySql:CharSet", "utf8mb4"),
+                    CreatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false),
+                    LastUpdatedAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_ChatSessions", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ChatSessions_AIModels_ModelId",
+                        column: x => x.ModelId,
+                        principalTable: "AIModels",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_ChatSessions_Users_UserId",
                         column: x => x.UserId,
@@ -70,9 +131,8 @@ namespace ChatbotAI_BE.Migrations
                 {
                     Id = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
                     ChatSessionId = table.Column<Guid>(type: "char(36)", nullable: false, collation: "ascii_general_ci"),
-                    Role = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Content = table.Column<string>(type: "longtext", nullable: false)
+                    Role = table.Column<int>(type: "int", nullable: false),
+                    Content = table.Column<string>(type: "varchar(5000)", maxLength: 5000, nullable: false)
                         .Annotation("MySql:CharSet", "utf8mb4"),
                     SentAt = table.Column<DateTime>(type: "datetime(6)", nullable: false)
                 },
@@ -89,9 +149,24 @@ namespace ChatbotAI_BE.Migrations
                 .Annotation("MySql:CharSet", "utf8mb4");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AIModelActivities_ModelId",
+                table: "AIModelActivities",
+                column: "ModelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AIModelActivities_UserId",
+                table: "AIModelActivities",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ChatMessages_ChatSessionId",
                 table: "ChatMessages",
                 column: "ChatSessionId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ChatSessions_ModelId",
+                table: "ChatSessions",
+                column: "ModelId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ChatSessions_UserId",
@@ -109,10 +184,16 @@ namespace ChatbotAI_BE.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "AIModelActivities");
+
+            migrationBuilder.DropTable(
                 name: "ChatMessages");
 
             migrationBuilder.DropTable(
                 name: "ChatSessions");
+
+            migrationBuilder.DropTable(
+                name: "AIModels");
 
             migrationBuilder.DropTable(
                 name: "Users");

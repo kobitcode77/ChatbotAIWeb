@@ -3,32 +3,8 @@
   "WorkspaceRootPath": "D:\\ChatbotAI_Web\\ChatbotAI_BE\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|d:\\chatbotai_web\\chatbotai_be\\models\\chatsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|solutionrelative:models\\chatsession.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|d:\\chatbotai_web\\chatbotai_be\\models\\chatmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|solutionrelative:models\\chatmessage.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|d:\\chatbotai_web\\chatbotai_be\\models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|solutionrelative:models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|d:\\chatbotai_web\\chatbotai_be\\models\\aimodelactivity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|solutionrelative:models\\aimodelactivity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|d:\\chatbotai_web\\chatbotai_be\\models\\aimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|solutionrelative:models\\aimodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|d:\\chatbotai_web\\chatbotai_be\\services\\aiapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|solutionrelative:services\\aiapiclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|d:\\chatbotai_web\\chatbotai_be\\services\\aiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|solutionrelative:services\\aiservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|d:\\chatbotai_web\\chatbotai_be\\repositories\\activityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F396EE03-0BDC-4C0B-91CB-810B6CC81922}|ChatbotAI_BE.csproj|solutionrelative:repositories\\activityrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -38,7 +14,7 @@
       "DocumentGroups": [
         {
           "DockedHeight": 362,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 5,
           "Children": [
             {
               "$type": "Bookmark",
@@ -62,93 +38,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "AIModelActivity.cs",
-              "DocumentMoniker": "D:\\ChatbotAI_Web\\ChatbotAI_BE\\Models\\AIModelActivity.cs",
-              "RelativeDocumentMoniker": "Models\\AIModelActivity.cs",
-              "ToolTip": "D:\\ChatbotAI_Web\\ChatbotAI_BE\\Models\\AIModelActivity.cs",
-              "RelativeToolTip": "Models\\AIModelActivity.cs",
-              "ViewState": "AQIAAAUAAAAAAAAAAAAQwAsAAAAyAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T07:07:00.42Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ChatSession.cs",
-              "DocumentMoniker": "D:\\ChatbotAI_Web\\ChatbotAI_BE\\Models\\ChatSession.cs",
-              "RelativeDocumentMoniker": "Models\\ChatSession.cs",
-              "ToolTip": "D:\\ChatbotAI_Web\\ChatbotAI_BE\\Models\\ChatSession.cs",
-              "RelativeToolTip": "Models\\ChatSession.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAAAAAA",
+              "Title": "ActivityRepository.cs",
+              "DocumentMoniker": "D:\\ChatbotAI_Web\\ChatbotAI_BE\\Repositories\\ActivityRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\ActivityRepository.cs",
+              "ToolTip": "D:\\ChatbotAI_Web\\ChatbotAI_BE\\Repositories\\ActivityRepository.cs",
+              "RelativeToolTip": "Repositories\\ActivityRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T06:29:42.444Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ChatMessage.cs",
-              "DocumentMoniker": "D:\\ChatbotAI_Web\\ChatbotAI_BE\\Models\\ChatMessage.cs",
-              "RelativeDocumentMoniker": "Models\\ChatMessage.cs",
-              "ToolTip": "D:\\ChatbotAI_Web\\ChatbotAI_BE\\Models\\ChatMessage.cs",
-              "RelativeToolTip": "Models\\ChatMessage.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAAA0AAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T06:29:32.241Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "AppUser.cs",
-              "DocumentMoniker": "D:\\ChatbotAI_Web\\ChatbotAI_BE\\Models\\AppUser.cs",
-              "RelativeDocumentMoniker": "Models\\AppUser.cs",
-              "ToolTip": "D:\\ChatbotAI_Web\\ChatbotAI_BE\\Models\\AppUser.cs",
-              "RelativeToolTip": "Models\\AppUser.cs",
-              "ViewState": "AQIAABEAAAAAAAAAAAAwwCYAAABEAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T06:25:59.274Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "AIService.cs",
-              "DocumentMoniker": "D:\\ChatbotAI_Web\\ChatbotAI_BE\\Services\\AIService.cs",
-              "RelativeDocumentMoniker": "Services\\AIService.cs",
-              "ToolTip": "D:\\ChatbotAI_Web\\ChatbotAI_BE\\Services\\AIService.cs",
-              "RelativeToolTip": "Services\\AIService.cs",
-              "ViewState": "AQIAAAMAAAAAAAAAAAAAADwAAAASAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T03:35:49.485Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "AIApiClient.cs",
-              "DocumentMoniker": "D:\\ChatbotAI_Web\\ChatbotAI_BE\\Services\\AIApiClient.cs",
-              "RelativeDocumentMoniker": "Services\\AIApiClient.cs",
-              "ToolTip": "D:\\ChatbotAI_Web\\ChatbotAI_BE\\Services\\AIApiClient.cs",
-              "RelativeToolTip": "Services\\AIApiClient.cs",
-              "ViewState": "AQIAAA8AAAAAAAAAAAAwwCAAAABOAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T03:35:26.985Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "AIModel.cs",
-              "DocumentMoniker": "D:\\ChatbotAI_Web\\ChatbotAI_BE\\Models\\AIModel.cs",
-              "RelativeDocumentMoniker": "Models\\AIModel.cs",
-              "ToolTip": "D:\\ChatbotAI_Web\\ChatbotAI_BE\\Models\\AIModel.cs",
-              "RelativeToolTip": "Models\\AIModel.cs",
-              "ViewState": "AQIAAAsAAAAAAAAAAADwvw8AAAAyAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-07T02:44:33.03Z",
+              "WhenOpened": "2025-10-09T06:49:08.495Z",
               "EditorCaption": ""
             }
           ]
