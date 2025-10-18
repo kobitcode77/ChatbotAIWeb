@@ -17,6 +17,7 @@ namespace ChatbotAI_BE.Models
 
         [Required]
         [MaxLength(5000)]
+        [MinLength(1)]
         public string Content { get; set; } = null!;
 
         public DateTime SentAt { get; set; } = DateTime.UtcNow;

@@ -69,6 +69,11 @@ public class GlobalExceptionMiddleware
                 message = "Xóa người dùng thất bại.";
                 errors.Add(nameof(DeleteUserFailedException));
                 break;
+            case ArgumentException:
+                statusCode = HttpStatusCode.BadRequest;
+                message = ex.Message;
+                errors.Add(nameof(ArgumentException));
+                break;
             default:
                 errors.Add(ex.GetType().Name);
                 break;

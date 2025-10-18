@@ -6,12 +6,13 @@ namespace ChatbotAI_BE.Repositories
 {
     public interface IMessageRepository
     {
-        Task<List<ChatMessage>> GetMessagesBySessionAndUserAsync(Guid sessionId, Guid userId);
-        Task<ChatMessage?> GetMessageByIdAndUserAsync(Guid messageId, Guid userId);
-        Task AddMessageAsync(ChatMessage message);
-        Task DeleteMessageAsync(ChatMessage message);
-        Task SaveChangesAsync();
+        Task<List<ChatMessage>> GetBySessionAndUserIdAsync(Guid sessionId, Guid userId, CancellationToken cancellationToken = default);
+        Task<ChatMessage?> GetByIdAndUserIdAsync(Guid messageId, Guid userId, CancellationToken cancellationToken = default);
+        Task AddAsync(ChatMessage message);
+        Task DeleteAsync(ChatMessage message);
+        Task SaveChangesAsync(CancellationToken cancellationToken = default);
     }
+
     public class MessageRepository : IMessageRepository
     {
         private readonly ChatDBContext _db;
@@ -21,41 +22,38 @@ namespace ChatbotAI_BE.Repositories
             _db = db;
         }
 
-        public async Task<List<ChatMessage>> GetMessagesBySessionAndUserAsync(Guid sessionId, Guid userId)
+        public async Task<List<ChatMessage>> GetBySessionAndUserIdAsync(Guid sessionId, Guid userId, CancellationToken cancellationToken = default)
         {
             return await _db.ChatMessages
                 .Where(m => m.ChatSessionId == sessionId && m.ChatSession.UserId == userId)
                 .OrderBy(m => m.SentAt)
-                .ToListAsync();
+                .AsNoTracking()
+                .ToListAsync(cancellationToken);
         }
 
-
-        public async Task<ChatMessage?> GetMessageByIdAndUserAsync(Guid messageId, Guid userId)
+        public async Task<ChatMessage?> GetByIdAndUserIdAsync(Guid messageId, Guid userId, CancellationToken cancellationToken = default)
         {
             return await _db.ChatMessages
                 .Include(m => m.ChatSession)
-                .FirstOrDefaultAsync(m => m.Id == messageId && m.ChatSession.UserId == userId);
+                .AsNoTracking()
+                .FirstOrDefaultAsync(m => m.Id == messageId && m.ChatSession.UserId == userId, cancellationToken);
         }
 
-
-
-        public  Task AddMessageAsync(ChatMessage message)
+        public Task AddAsync(ChatMessage message)
         {
             _db.ChatMessages.Add(message);
             return Task.CompletedTask;
         }
 
-
-        public  Task DeleteMessageAsync(ChatMessage message)
+        public Task DeleteAsync(ChatMessage message)
         {
             _db.ChatMessages.Remove(message);
             return Task.CompletedTask;
         }
 
-        public async Task SaveChangesAsync()
+        public async Task SaveChangesAsync(CancellationToken cancellationToken = default)
         {
-            await _db.SaveChangesAsync();
+            await _db.SaveChangesAsync(cancellationToken);
         }
     }
 }
-

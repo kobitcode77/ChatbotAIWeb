@@ -250,3 +250,6 @@ D:\ChatbotAI_Web\ChatbotAI_BE\obj\Debug\net8.0\scopedcss\bundle\ChatbotAI_BE.sty
 D:\ChatbotAI_Web\ChatbotAI_BE\obj\Debug\net8.0\ChatbotA.D1B6F34C.Up2Date
 D:\ChatbotAI_Web\ChatbotAI_BE\obj\Debug\net8.0\ChatbotAI_BE.genruntimeconfig.cache
 D:\ChatbotAI_Web\ChatbotAI_BE\obj\Debug\net8.0\ref\ChatbotAI_BE.dll
+D:\ChatbotAI_Web\ChatbotAI_BE\bin\Debug\net8.0\FluentValidation.dll
+D:\ChatbotAI_Web\ChatbotAI_BE\bin\Debug\net8.0\FluentValidation.AspNetCore.dll
+D:\ChatbotAI_Web\ChatbotAI_BE\bin\Debug\net8.0\FluentValidation.DependencyInjectionExtensions.dll

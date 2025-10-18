@@ -15,8 +15,8 @@ namespace ChatbotAI_BE.Models
         public Guid ModelId { get; set; }
         public AIModel Model { get; set; } = null!;
 
-        public int InputTokens { get; set; }       // prompt_tokens
-        public int OutputTokens { get; set; }      // completion_tokens
+        public int InputTokens { get; set; } 
+        public int OutputTokens { get; set; } 
         public int TotalTokens => InputTokens + OutputTokens;
 
         public DateTime UsedAt { get; set; } = DateTime.UtcNow;

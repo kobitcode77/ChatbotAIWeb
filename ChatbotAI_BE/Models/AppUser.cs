@@ -37,7 +37,27 @@ namespace ChatbotAI_BE.Models
         public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
         public List<ChatSession> Sessions { get; set; } = new();    
-        public List<AIModelActivity> Activities { get; set; } = new();    
+        public List<AIModelActivity> Activities { get; set; } = new();
+
+        //public AppUser(string username, string password, string provider, string providerId, string? email, string? name, UserRole role = UserRole.User)
+        //{
+        //    if (string.IsNullOrWhiteSpace(username))
+        //        throw new ArgumentException("Username không hợp lệ.");
+        //    if (string.IsNullOrWhiteSpace(password))
+        //        throw new ArgumentException("Password không hợp lệ.");
+        //    if (string.IsNullOrWhiteSpace(provider))
+        //        throw new ArgumentException("Provider không hợp lệ.");
+        //    if (string.IsNullOrWhiteSpace(providerId))
+        //        throw new ArgumentException("ProviderId không hợp lệ.");
+
+        //    Username = username;
+        //    Password = password;
+        //    Provider = provider;
+        //    ProviderId = providerId;
+        //    Email = email;
+        //    Name = name;
+        //    Role = role;
+        //}
 
     }
 }
