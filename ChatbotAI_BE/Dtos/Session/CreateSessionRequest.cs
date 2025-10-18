@@ -1,10 +1,9 @@
 ﻿using ChatbotAI_BE.Models;
-
-namespace ChatbotAI_BE.Dtos
+namespace ChatbotAI_BE.Dtos.Session
 {
     public class CreateSessionRequest
     {
-        public AIModel Model { get; set; } = null!;
+        public Guid ModelId { get; set; }
         public string? Title { get; set; }
     }
 }

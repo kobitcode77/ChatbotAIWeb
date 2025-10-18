@@ -22,7 +22,7 @@ namespace ChatbotAI_BE.Services
 
             var claims = new List<Claim>
             {
-                new Claim(ClaimTypes.Name, user.Name ?? user.Username ?? user.Email ?? "Unknown"),
+                new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Sub, user.Email ?? ""),
                 new Claim("id", user.Id.ToString()),
                 new Claim("provider", user.Provider),
